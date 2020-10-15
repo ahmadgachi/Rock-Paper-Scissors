@@ -10,6 +10,25 @@ const game = function () {
     const choices = document.querySelectorAll(".choice-wrapper button");
     const playerHand = document.querySelector(".player-pick img");
     const computerHand = document.querySelector(".house-pick img");
+    const winner = document.querySelector('.winner p');
+    const restartBtn = document.querySelector('.winner button');
+
+    class Result {
+      static playerWins() {
+        winner.textContent = 'You win';
+      }
+      static HouseWins() {
+        winner.textContent = 'You lose';
+      }
+      static draw() {}
+    }
+
+    // Restart Match
+    restartBtn.addEventListener('click', () => {
+      step2.style.animation = 'opacityzero 0.7s ease forwards';
+      step2.style.display = "none";
+      game.style.animation = "opacityone 0.7s ease forwards";
+    });
 
     // Computer options
     const computerOptions = ["rock", "paper", "scissors"];
@@ -47,12 +66,13 @@ const game = function () {
       });
     });
 
-    // Get scores
+
+    // Get score
     let score;
     if (localStorage.getItem("score") == null) {
       localStorage.setItem("score", 0);
     } else {
-      score = localStorage.getItem("score");
+      score = Number(localStorage.getItem("score"));
       playerScore.textContent = score;
     }
 
@@ -147,3 +167,4 @@ const game = function () {
 };
 
 game();
+
