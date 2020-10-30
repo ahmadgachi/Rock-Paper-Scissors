@@ -10,24 +10,24 @@ const game = function () {
     const choices = document.querySelectorAll(".choice-wrapper button");
     const playerHand = document.querySelector(".player-pick img");
     const computerHand = document.querySelector(".house-pick img");
-    const winner = document.querySelector('.winner p');
-    const restartBtn = document.querySelector('.winner button');
+    const winner = document.querySelector(".winner");
+    const restartBtn = document.querySelector(".winner button");
 
     class Result {
       static playerWins() {
-        winner.textContent = 'You win';
+        winner.textContent = "You win";
       }
       static HouseWins() {
-        winner.textContent = 'You lose';
+        winner.textContent = "You lose";
       }
       static draw() {}
     }
 
     // Restart Match
-    restartBtn.addEventListener('click', () => {
-      step2.style.animation = 'opacityzero 0.7s ease forwards';
+    restartBtn.addEventListener("click", () => {
+      step2.style.animation = "opacityzero 0.7s ease forwards";
       step2.style.display = "none";
-      game.style.animation = "opacityone 0.7s ease forwards";
+      game.style.animation = "opacityone 1s ease forwards";
     });
 
     // Computer options
@@ -61,11 +61,12 @@ const game = function () {
 
             // Call Compare Hands
             compareHands(this.id, computerChoice);
+            winner.style.opacity = "1";
+            step2.style.justifyContent = "space-around";
           }, 1000);
         }, 500);
       });
     });
-
 
     // Get score
     let score;
@@ -167,4 +168,3 @@ const game = function () {
 };
 
 game();
-
